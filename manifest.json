@@ -1,0 +1,19 @@
+{
+  "name": "EC2 Monthly Pricing",
+  "version": "1.0.0",
+  "description": "Adds monthly prices to EC2 pricing page by multiplying by number of hours in 30.5 days (~732 hrs, same as simple monthly calculator).",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "js": [
+        "jquery-2.0.2.min.js",
+        "content-script.js"
+      ],
+      "matches": [
+        "https://aws.amazon.com/ec2/pricing/on-demand/*",
+        "https://aws.amazon.com/redshift/pricing/*",
+        "https://aws.amazon.com/elasticsearch-service/pricing/*"
+      ]
+    }
+  ]
+}
