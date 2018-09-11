@@ -13,13 +13,19 @@ $('.aws-plc-content').on("DOMSubtreeModified", function () {
 
 function modifyTable() {
     if (!doneModify) {
-        $($($($(".aws-controls")[0]).find('.button'))[0].children).click(function () {
-            if ($(this).attr('class') != "js-active") {
-                window.clearTimeout(timeoutHandle);
-                timeoutHandle = window.setTimeout(modifyTable, 3 * 1000);
-            }
+        let x = $(".aws-controls");
+        $.each(x, function (index, value) {
+            $($($(value).find('.button'))[0].children).click(function () {
+
+                if ($(this).attr('class') != "js-active") {
+                    window.clearTimeout(timeoutHandle);
+                    timeoutHandle = window.setTimeout(modifyTable, 3 * 1000);
+                }
+
+            })
         });
     }
+    
     doneModify = true
     const cells = Array.prototype.slice.call(document.querySelectorAll('tr[data-plc-offer-id] > td:last-child'), 0);
     const pattern = new RegExp("^\\$(\\d+\\.\\d+) per Hour$");
