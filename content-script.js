@@ -13,8 +13,8 @@ $('.aws-plc-content').on("DOMSubtreeModified", function () {
 
 function modifyTable() {
     if (!doneModify) {
-        let x = $(".aws-controls");
-        $.each(x, function (index, value) {
+        let buttons = $(".aws-controls");
+        $.each(buttons, function (index, value) {
             $($($(value).find('.button'))[0].children).click(function () {
                 if ($(this).attr('class') != "js-active") {
                     window.clearTimeout(timeoutHandle);
