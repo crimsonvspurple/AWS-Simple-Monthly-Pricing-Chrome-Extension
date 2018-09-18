@@ -1,7 +1,7 @@
 {
   "name": "AWS Simple Monthly Pricing",
   "version": "1.0.0",
-  "description": "Adds monthly prices to various AWS pricing pages by multiplying by number of hours in 30.5 days (~732 hrs, same as simple monthly calculator).",
+  "description": "Adds monthly prices to various AWS pricing pages by multiplying by 30.5 days (~732 hrs, same as simple monthly calculator).",
   "manifest_version": 2,
   "content_scripts": [
     {
