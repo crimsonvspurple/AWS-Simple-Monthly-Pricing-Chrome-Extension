@@ -41,6 +41,3 @@ function modifyTable() {
 function error() {
     console.log("error loading table")
 }
-
-
-
