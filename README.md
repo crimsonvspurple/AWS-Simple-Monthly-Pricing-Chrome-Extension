@@ -1,5 +1,5 @@
 # AWS-Simple-Monthly-Pricing-Chrome-Extension
-Chrome Extension that enhances AWS pricing pages to show the monthly price of services as well as the hourly.
+Chrome Extension that enhances AWS pricing pages to show the monthly price of services as well as the hourly. Developed with [Wizage.](https://github.com/wizage)
 
 ## Getting Started
 Extension can be launched from the [Chrome Web Store](https://chrome.google.com/webstore/detail/aws-simple-monthly-pricin/ejlooodgiipglijdmnfllncmhofjkddd).
