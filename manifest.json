@@ -31,9 +31,10 @@
       ],
       "matches": [
         "https://aws.amazon.com/rds/*/pricing/",
-        "https://aws.amazon.com/elasticache/pricing/*"
+        "https://aws.amazon.com/elasticache/pricing/*",
+        "https://aws.amazon.com/sagemaker/pricing/*"
       ],
-      "exclude_matches":[
+      "exclude_matches": [
         "https://aws.amazon.com/rds/aurora/pricing/"
       ]
     }
