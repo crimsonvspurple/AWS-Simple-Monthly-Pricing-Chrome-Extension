@@ -2,38 +2,46 @@
 var timeoutHandle = window.setTimeout(error, 20 * 1000);
 var doneModify = false;
 
-$('.aws-plc-content').on("DOMSubtreeModified", function () {
+var observeTimeout = window.setTimeout(observeAndStart, 2 * 1000);
 
+function observeAndStart() {
+    // Select the node that will be observed for mutations
+    const targetNode = document.querySelector('awsui-table[data-test="pricing_table"]');
 
-    if (!doneModify) {
+    // Options for the observer (which mutations to observe)
+    const config = { attributes: true, childList: true, subtree: true };
+
+    // Callback function to execute when mutations are observed
+    const callback = function (mutationsList, observer) {
+        doneModify = false;
         window.clearTimeout(timeoutHandle);
-        timeoutHandle = window.setTimeout(modifyTable, 3 * 1000);
-    }
-});
+        modifyTable();
+    };
+
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(callback);
+
+    observer.observe(targetNode, config);
+    // observer.disconnect();
+}
 
 function modifyTable() {
     if (!doneModify) {
-        let buttons = $(".aws-controls");
-        $.each(buttons, function (index, value) {
-            $($($(value).find('.button'))[0].children).click(function () {
-                if ($(this).attr('class') != "js-active") {
-                    window.clearTimeout(timeoutHandle);
-                    timeoutHandle = window.setTimeout(modifyTable, 3 * 1000);
-                }
-            })
-        });
+        window.clearTimeout(timeoutHandle);
+        timeoutHandle = window.setTimeout(modifyTable, 1 * 1000);
     }
 
     doneModify = true
-    const cells = Array.prototype.slice.call(document.querySelectorAll('tr[data-plc-offer-id] > td:last-child'), 0);
-    const pattern = new RegExp("^\\$(\\d+\\.\\d+) per Hour$");
-    $.each(cells, function (index, value) {
-        var message = value.innerText;
+    const cells = Array.prototype.slice.call(document.querySelectorAll('awsui-table[data-test="pricing_table"] .awsui-table-container tr.awsui-table-row > td > span > span'), 0);
+    const pattern = new RegExp("^\\$(\\d+\\.\\d+)$");
+
+    cells.forEach(cell => {
+        var message = cell.innerText;
         let matches = pattern.exec(message);
         if (matches != null && matches.length > 1) {
             let cost = parseFloat(matches[1]);
             let monthlyCost = (cost * 24 * 30.5).toFixed(2);
-            value.innerText = value.innerText + ' | $' + monthlyCost + ' per Month';
+            cell.innerText = cell.innerText + ' | $' + monthlyCost;
         }
     });
 }

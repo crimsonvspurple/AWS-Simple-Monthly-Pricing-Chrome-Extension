@@ -10,10 +10,12 @@
         "content-script.js"
       ],
       "matches": [
-        "https://aws.amazon.com/ec2/pricing/on-demand/*",
+        "https://aws.amazon.com/ec2/pricing/on-demand/WHATEVER*",
         "https://aws.amazon.com/redshift/pricing/*",
-        "https://aws.amazon.com/elasticsearch-service/pricing/*"
-      ]
+        "https://aws.amazon.com/elasticsearch-service/pricing/*",
+        "https://c0.b0.p.awsstatic.com/*"
+      ],
+      "all_frames": true
     },
     {
       "js": [
